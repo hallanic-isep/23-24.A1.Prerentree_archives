@@ -1,0 +1,104 @@
+
+*** Commandes "en ligne" du système d'exploitation (Linux ou MacOS ou Git-Bash)
+
+
+> pwd 
+("path to working directory", chemin d'accès au répertoire de travail courant) 
+
+> cd /C/HorsGoogleDrive/PyCharmProjects/23-24.A1.Prerentree_venv
+("change directory", modifie le répertoire/dossier de travail courant)
+ATTENTION : avec Windows la syntaxe est la suivante ...
+   C:\HorsGoogleDrive\PyCharmProjects\23-24.A1.Prerentree_venv
+... qu'il faudra donc modifier pour que le "cd" fonctionne !!!
+
+> ls
+("list", liste des fichiers et sous-dossiers du dossier de travail courant
+> ls -a
+("list all", affiche la liste en incluant les fichiers ou dossiers "cachés")
+> ls -l
+("list long", affiche la liste avec des informations détaillées)
+> ls -al
+("list all long")
+
+Déplacement possible dans un des sous-dossiers de la liste en indiquant son nom :
+> cd venv
+Aussi possible de se placer dans le dossier "englobant" (niveau supérieur) :
+> cd ..
+
+> cat ~/.gitconfig
+1 - cat="catenate", enchaîne l'affichage du contenu d'un ou plusieurs fichiers
+2 - ~ = correspond au chemin d'accès au dossier réservé à l'utilisateur
+3 - .gitconfig = le "." indique un fichier ou dossier "caché" (exclu du "ls")
+
+> ssh-keygen -t rsa -b 4096
+Génère les deux clés SSH (privée et publique) 
+Ce sont, par défaut, les deux fichiers "~/.ssh/id_rsa" et "~/.ssh/id_rsa.pub"
+
+
+*** Commandes "en ligne" spécifiques au gestionnaire de versions "Git"
+
+
+> git --version
+(pour verifier que "git" fonctionne bien)
+
+
+/!\ Initialisation du nom et de l'e-mail pour les "commit" (la permière fois)
+si ...
+    > git config --list
+... ne contient pas les informations permettant l'identification :
+        user.name=Herve Allanic
+        user.email=herve.allanic@isep.fr
+alors il faut ajouter ces informations par les commandes suivantes :
+    > git config --global user.name "Herve Allanic"
+    > git config --global user.email "herve.allanic@isep.fr"
+
+    > cat ~/.gitconfig
+    ... devrait alors afficher :
+        [user]
+                name = Herve Allanic
+                email = herve.allanic@isep.fr
+
+
+> git init
+(initialise le système de gestion de version Git pour le répertoire courant)
+    > ls -a
+    ... devrait afficher (entre autre)
+            .git/
+
+> git status
+Affiche les listes :
+  - des fichiers non suivis
+  - des suivis mais modifiés 
+  - des suivis enregistrés pour le prochain "commit"
+
+> git add juste_prix.py
+(enregistre le fichier pour le prochain "commit")
+
+> git commit -m "Commit initial"
+Intègre dans Git les modifications/créations des fichiers enregistrés par "git add"
+
+
+*** Sauvegarde sur le web (GitHub) d'un référentiel Git local à sa machine
+
+
+/!\ Initialisation à faire la première fois
+Il faut avoir ou créer un compte sur GitHub et y stocker la clé SSH publique
+> cat ~/.ssh/id_rsa.pub
+==> dans GitHub : dans le menu du compte utilisateur (en haut à droite)
+    ...compte->settings->SSH/GPG
+    ..."New SSH key"
+    ... y coller la chaîne affichée par la commande "cat" (ci-dessus)
+   
+
+Sur GitHub, créer le repository (vide!) qui recevra la sauvegarde du projet Git
+
+Après création, GitHub affiche les commandes à exécuter sur la machine locale.
+/!\ ATTENTION : il faut cliquer sur l'onglet "SSH" pour avoir les bonnes commandes
+... dont les commandes pour la sauvegarde "web" d'un projet Git local existant :
+   > git remote add origin git@github.com:hallanic-isep/23-24.A1.Prerentree_demo2.git
+   (établissement du lien entre la sauvegarde "web" et le projet Git local)
+   > git branch -M main
+   (GitHut préconise de renomer la branche principale "master" en "main")
+ 
+> git push -u origin main
+(à exécuter pour sauver les modifications sur le web. Généralement après un "commit")
