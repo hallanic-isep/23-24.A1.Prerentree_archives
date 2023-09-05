@@ -1,1 +1,1 @@
-# La liste des commandes Shell et Git ainsi que les scripts Jupyter arrivent soit lundi 4, soit mardi 5... #
+## Les fichiers créés lors des 3 séances d'informatique de la prérentrée A1  ##
